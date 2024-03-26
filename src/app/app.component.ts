@@ -1,29 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './interface/product';
-import { createProducts } from './data/product.generator';
+import { Product } from './shared/interface/product';
+import { createProduct, createProducts } from './shared/data/product.generator';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
+  public productCache!: Product[];
+  public products!: Product[];
+  public product: Product = createProduct();
+  public message!: 'Acceuil - Recherche';
 
-products!: Product[];
+  ngOnInit() {
+    this.products = createProducts(36);
+    console.log(this.products);
+  }
 
+  public isPromo(produit: Product): boolean {
+    return produit.promo;
+  }
 
-ngOnInit(){
+  public addToCart(ev: any) {
+    console.log(ev);
+  }
 
-  this.products = createProducts();
-  console.log(this.products);
+  public filterProduct(text:string) {
+this.handlleFilter(text);
+  }
 
-}
-
-
-
+  private handlleFilter(t: string) {
+    if (t === null || !t.length) {
+      this.products = this.productCache;
+    }
+    this.products = this.productCache.filter((_produits) =>
+      _produits.name.includes(t)
+    );
+  }
 
   // title = 'edacyDemo';
-
 
   // // Define the list of students
 
