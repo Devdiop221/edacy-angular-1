@@ -8,11 +8,13 @@ export function createProduct(): Product {
     name: faker.commerce.productName(),
     price: faker.commerce.price(),
     description: faker.commerce.productDescription(),
-    image: faker.image.imageUrl(),
+    image: faker.image.urlLoremFlickr({ category: 'shoes' }),
     quantity: faker.commerce.price(),
     category: faker.commerce.department(),
     promo: hasPromo,
-    promoVal: hasPromo ? faker.datatype.number({ min: 10, max:60}) : undefined,
+    promoVal: hasPromo
+      ? faker.datatype.number({ min: 10, max: 60 })
+      : undefined,
   };
 }
 

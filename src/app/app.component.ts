@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './shared/interface/product';
 import { createProduct, createProducts } from './shared/data/product.generator';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  
 })
 export class AppComponent implements OnInit {
   public productCache!: Product[];
@@ -26,8 +29,8 @@ export class AppComponent implements OnInit {
     console.log(ev);
   }
 
-  public filterProduct(text:string) {
-this.handlleFilter(text);
+  public filterProduct(text: string) {
+    this.handlleFilter(text);
   }
 
   private handlleFilter(t: string) {
